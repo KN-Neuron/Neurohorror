@@ -1,3 +1,53 @@
 [gd_scene format=3 uid="uid://2u6blqr6r6ce"]
 
+[ext_resource type="Script" uid="uid://hp7k4gcq4ymi" path="res://npc/nav.gd" id="1_lyxnx"]
+[ext_resource type="PackedScene" uid="uid://sx4r70k5ixm6" path="res://assets/village/terrain/village_terrain.glb" id="2_lyxnx"]
+[ext_resource type="PackedScene" uid="uid://b84qbj7ch644j" path="res://assets/village/npc/villager_man/MaleVillager.blend" id="2_v3noy"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ulv23"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_lyxnx"]
+vertices = PackedVector3Array(36.182087, 0.5, 16.961561, 36.182087, 0.5, 38.461563, 53.182087, 0.5, 38.461563, 53.182087, 0.5, 16.961561)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+geometry_parsed_geometry_type = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_sxwns"]
+
 [node name="Node3D" type="Node3D" unique_id=659363544]
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=147640491]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7737617, 2.3117142, -0.15366936)
+script = ExtResource("1_lyxnx")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="CharacterBody3D" unique_id=405238971]
+
+[node name="MaleVillager" parent="CharacterBody3D" unique_id=2143105578 instance=ExtResource("2_v3noy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48.97712, -1.3622527, 30.362167)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D" unique_id=192574729]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48.86707, -0.33438158, 30.378004)
+shape = SubResource("CapsuleShape3D_ulv23")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=628014757]
+navigation_mesh = SubResource("NavigationMesh_lyxnx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D" unique_id=200796837]
+transform = Transform3D(9.000268, 0, 0, 0, 1, 0, 0, 0, 11.253725, 44.682354, 0, 27.715286)
+mesh = SubResource("PlaneMesh_sxwns")
+
+[node name="village_terrain" parent="." unique_id=1802159343 instance=ExtResource("2_lyxnx")]
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1207118148]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.966545, 3.3414383, 35.56658)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1725560941]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 47.52047, 0)
+light_color = Color(0.99956745, 0.86362994, 0.64387536, 1)
+light_energy = 30.0
+omni_range = 4096.0
+
+[node name="ChangeTargetTimer" type="Timer" parent="." unique_id=1157042769]
+wait_time = 2.0
+autostart = true
+
+[connection signal="timeout" from="ChangeTargetTimer" to="CharacterBody3D" method="_on_change_target_timer_timeout"]
