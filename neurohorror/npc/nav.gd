@@ -28,7 +28,7 @@ func _physics_process(delta):
 	var pox_xz = Vector2(global_position.x, global_position.z)
 	var target_pos_xz = Vector2(nav_agent.target_position.x, nav_agent.target_position.z)
 	if pox_xz.distance_to(target_pos_xz) < 1.5:
-		print("DEBUG: Idling")
+		print("DEBUG (status): Idling")
 		start_idling()
 		return
 		
@@ -61,10 +61,9 @@ func pick_random_target():
 	var random_target = global_position + random_offset
 	var correct_target = NavigationServer3D.map_get_closest_point(map_rid, random_target)
 	
-	# Ustawiamy nowy cel i wyłączamy stan odpoczynku
 	nav_agent.target_position = correct_target
 	is_idling = false
-	print("DEBUG: ", correct_target)
+	print("DEBUG (target): ", correct_target)
 
 func start_idling():
 	is_idling = true
