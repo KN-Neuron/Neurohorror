@@ -1,6 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://bkqxoist04hfy"]
+[gd_scene format=3 uid="uid://bkqxoist04hfy"]
 
-[ext_resource type="Script" uid="uid://c0ylalhcjx4og" path="res://character_body_3d.gd" id="1_kne1u"]
+[ext_resource type="Script" uid="uid://c0ylalhcjx4og" path="res://player_controller.gd" id="1_kne1u"]
 [ext_resource type="Material" uid="uid://dsrn8knptjo0f" path="res://shaders/fog.tres" id="2_e80uo"]
 [ext_resource type="Shader" uid="uid://d0vu0bg5f2pmf" path="res://shaders/DarknesSphereSharer.tres" id="3_cxr5p"]
 
