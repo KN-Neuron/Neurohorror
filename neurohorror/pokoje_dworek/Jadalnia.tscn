@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://pvhglwno505t"]
+
+[ext_resource type="Script" uid="uid://c760nd55ktut1" path="res://pokoje_dworek/Pomieszczenie.gd" id="1_b3gqw"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_b3gqw"]
+size = Vector3(10, 1, 10)
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_jubyx"]
+albedo_color = Color(0, 1, 0, 1)
+
+[node name="Przedpokoj" type="Node3D" unique_id=1823679692]
+script = ExtResource("1_b3gqw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1203537049]
+mesh = SubResource("BoxMesh_b3gqw")
+surface_material_override/0 = SubResource("ORMMaterial3D_jubyx")

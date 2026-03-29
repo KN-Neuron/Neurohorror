@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://djhn56b8l5rnb"]
+
+[ext_resource type="Script" uid="uid://c760nd55ktut1" path="res://pokoje_dworek/Pomieszczenie.gd" id="1_155no"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_155no"]
+size = Vector3(10, 1, 10)
+
+[node name="Przedpokoj" type="Node3D" unique_id=1823679692]
+script = ExtResource("1_155no")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=572770777]
+mesh = SubResource("BoxMesh_155no")
