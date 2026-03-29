@@ -1,0 +1,71 @@
+[gd_scene load_steps=8 format=3 uid="uid://bkqxoist04hfy"]
+
+[ext_resource type="Script" uid="uid://c0ylalhcjx4og" path="res://character_body_3d.gd" id="1_kne1u"]
+[ext_resource type="Material" uid="uid://dsrn8knptjo0f" path="res://shaders/fog.tres" id="2_e80uo"]
+[ext_resource type="Shader" uid="uid://d0vu0bg5f2pmf" path="res://shaders/DarknesSphereSharer.tres" id="3_cxr5p"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3ps45"]
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 0.49019608)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_msjai"]
+bg_color = Color(0.3966485, 0.4722823, 0.9999984, 0.49019608)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5nxuo"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3ps45"]
+render_priority = 0
+shader = ExtResource("3_cxr5p")
+
+[node name="CharacterBody3D" type="CharacterBody3D"]
+process_mode = 1
+script = ExtResource("1_kne1u")
+
+[node name="Stamina" type="ProgressBar" parent="."]
+offset_left = 38.0
+offset_top = 25.0
+offset_right = 140.0
+offset_bottom = 52.0
+theme_override_styles/background = SubResource("StyleBoxFlat_3ps45")
+theme_override_styles/fill = SubResource("StyleBoxFlat_msjai")
+max_value = 10.0
+value = 10.0
+show_percentage = false
+
+[node name="NoFog" type="FogVolume" parent="."]
+size = Vector3(45, 45, 45)
+shape = 0
+material = ExtResource("2_e80uo")
+
+[node name="Capsule" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_5nxuo")
+
+[node name="Camera" type="Camera3D" parent="Capsule"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+current = true
+
+[node name="Darkness" type="CSGSphere3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.43710732)
+flip_faces = true
+radius = 25.0
+radial_segments = 32
+rings = 16
+material = SubResource("ShaderMaterial_3ps45")

@@ -1,0 +1,12 @@
+[gd_resource type="FogMaterial" load_steps=3 format=3 uid="uid://dsrn8knptjo0f"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_umalr"]
+
+[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_3ps45"]
+noise = SubResource("FastNoiseLite_umalr")
+
+[resource]
+density = -3.0
+albedo = Color(0, 0, 0, 1)
+edge_fade = 0.3482198
+density_texture = SubResource("NoiseTexture3D_3ps45")

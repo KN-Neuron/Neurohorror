@@ -1,0 +1,70 @@
+[gd_scene load_steps=6 format=3 uid="uid://8yh0i3gx2eg0"]
+
+[ext_resource type="PackedScene" uid="uid://bkqxoist04hfy" path="res://Player.tscn" id="1_mncer"]
+
+[sub_resource type="Environment" id="Environment_umalr"]
+volumetric_fog_enabled = true
+volumetric_fog_sky_affect = 0.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_r2264"]
+size = Vector3(1.1104736, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r2264"]
+
+[sub_resource type="FogMaterial" id="FogMaterial_3ps45"]
+albedo = Color(0, 0, 0, 1)
+
+[node name="Node3D" type="WorldEnvironment"]
+environment = SubResource("Environment_umalr")
+
+[node name="Player" parent="." instance=ExtResource("1_mncer")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, 0, -0.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_r2264")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="StaticBody3D"]
+material = SubResource("StandardMaterial3D_r2264")
+
+[node name="Wall" type="StaticBody3D" parent="."]
+transform = Transform3D(40, 0, 0, 0, 40, 0, 0, 0, 40, -35.569504, 9, 29.455101)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.055236816, 0, 0)
+shape = SubResource("BoxShape3D_r2264")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.113007784, 0, 0)
+material = SubResource("StandardMaterial3D_r2264")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 3.2073298, 0)
+
+[node name="Wall2" type="StaticBody3D" parent="."]
+transform = Transform3D(40, 0, 0, 0, 40, 0, 0, 0, 40, -35.569504, 9, -29.427425)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05381161, 0, 0)
+shape = SubResource("BoxShape3D_r2264")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Wall2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.11291587, -0.002256021, 0.009499729)
+material = SubResource("StandardMaterial3D_r2264")
+
+[node name="Wall3" type="StaticBody3D" parent="."]
+transform = Transform3D(40, 0, 0, 0, 40, 0, 0, 0, 40, 25.174248, 9, -29.427425)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.16502953, 0, 0)
+shape = SubResource("BoxShape3D_r2264")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Wall3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.113007784, 0, 0)
+material = SubResource("StandardMaterial3D_r2264")
+
+[node name="FogVolume" type="FogVolume" parent="."]
+shape = 4
+material = SubResource("FogMaterial_3ps45")
