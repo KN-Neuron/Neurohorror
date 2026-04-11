@@ -1,4 +1,4 @@
-[gd_resource type="FogMaterial" load_steps=3 format=3 uid="uid://dsrn8knptjo0f"]
+[gd_resource type="FogMaterial" format=3 uid="uid://dsrn8knptjo0f"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_umalr"]
 

@@ -1,6 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://8yh0i3gx2eg0"]
+[gd_scene format=3 uid="uid://8yh0i3gx2eg0"]
 
 [ext_resource type="PackedScene" uid="uid://bkqxoist04hfy" path="res://Player.tscn" id="1_mncer"]
+[ext_resource type="Script" uid="uid://c88l2r53pp2ls" path="res://ThinkGear/Connect.cs" id="2_cguwc"]
+[ext_resource type="Script" uid="uid://ce8puv63yg5ku" path="res://TestData.gd" id="3_wicfy"]
 
 [sub_resource type="Environment" id="Environment_umalr"]
 volumetric_fog_enabled = true
@@ -14,57 +16,112 @@ size = Vector3(1.1104736, 1, 1)
 [sub_resource type="FogMaterial" id="FogMaterial_3ps45"]
 albedo = Color(0, 0, 0, 1)
 
-[node name="Node3D" type="WorldEnvironment"]
+[node name="Node3D" type="WorldEnvironment" unique_id=2087934025]
 environment = SubResource("Environment_umalr")
 
-[node name="Player" parent="." instance=ExtResource("1_mncer")]
+[node name="Player" parent="." unique_id=2072929047 node_paths=PackedStringArray("menu") instance=ExtResource("1_mncer")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+menu = NodePath("../Menu")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=352987688]
 transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, 0, -0.5, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=204239957]
 shape = SubResource("BoxShape3D_r2264")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="StaticBody3D"]
+[node name="CSGBox3D" type="CSGBox3D" parent="StaticBody3D" unique_id=1840893417]
 material = SubResource("StandardMaterial3D_r2264")
 
-[node name="Wall" type="StaticBody3D" parent="."]
+[node name="Wall" type="StaticBody3D" parent="." unique_id=350620337]
 transform = Transform3D(40, 0, 0, 0, 40, 0, 0, 0, 40, -35.569504, 9, 29.455101)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall" unique_id=1546169784]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.055236816, 0, 0)
 shape = SubResource("BoxShape3D_r2264")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Wall"]
+[node name="CSGBox3D" type="CSGBox3D" parent="Wall" unique_id=211378837]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.113007784, 0, 0)
 material = SubResource("StandardMaterial3D_r2264")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1784318998]
 transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 3.2073298, 0)
 
-[node name="Wall2" type="StaticBody3D" parent="."]
+[node name="Wall2" type="StaticBody3D" parent="." unique_id=1049649666]
 transform = Transform3D(40, 0, 0, 0, 40, 0, 0, 0, 40, -35.569504, 9, -29.427425)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall2" unique_id=643463244]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05381161, 0, 0)
 shape = SubResource("BoxShape3D_r2264")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Wall2"]
+[node name="CSGBox3D" type="CSGBox3D" parent="Wall2" unique_id=205867815]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.11291587, -0.002256021, 0.009499729)
 material = SubResource("StandardMaterial3D_r2264")
 
-[node name="Wall3" type="StaticBody3D" parent="."]
+[node name="Wall3" type="StaticBody3D" parent="." unique_id=407478708]
 transform = Transform3D(40, 0, 0, 0, 40, 0, 0, 0, 40, 25.174248, 9, -29.427425)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall3"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall3" unique_id=1916226209]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.16502953, 0, 0)
 shape = SubResource("BoxShape3D_r2264")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Wall3"]
+[node name="CSGBox3D" type="CSGBox3D" parent="Wall3" unique_id=182207668]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.113007784, 0, 0)
 material = SubResource("StandardMaterial3D_r2264")
 
-[node name="FogVolume" type="FogVolume" parent="."]
+[node name="FogVolume" type="FogVolume" parent="." unique_id=1556829931]
 shape = 4
 material = SubResource("FogMaterial_3ps45")
+
+[node name="Menu" type="ColorRect" parent="." unique_id=138978286]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -303.125
+offset_top = -173.5
+offset_right = 303.125
+offset_bottom = 173.5
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.7507996, 0.7507996, 0.7507996, 0.4392157)
+
+[node name="TempStatus" type="ColorRect" parent="Menu" unique_id=1231433514]
+layout_mode = 0
+offset_left = 293.125
+offset_top = 71.5
+offset_right = 409.125
+offset_bottom = 102.5
+color = Color(1, 0, 0, 1)
+
+[node name="Label" type="Label" parent="Menu" unique_id=231909274]
+layout_mode = 0
+offset_left = 66.125
+offset_top = 71.5
+offset_right = 191.125
+offset_bottom = 94.5
+text = "Enter COM name:"
+
+[node name="COMName" type="LineEdit" parent="Menu" unique_id=1657398131]
+layout_mode = 0
+offset_left = 212.125
+offset_top = 70.5
+offset_right = 280.625
+offset_bottom = 101.5
+text = "COM8"
+placeholder_text = "COM_"
+
+[node name="ConnectButton" type="Button" parent="Menu" unique_id=1745589583 node_paths=PackedStringArray("COM", "ConnectionState")]
+layout_mode = 0
+offset_left = 293.125
+offset_top = 71.5
+offset_right = 409.125
+offset_bottom = 102.5
+text = "Connect"
+script = ExtResource("2_cguwc")
+COM = NodePath("../COMName")
+ConnectionState = NodePath("../TempStatus")
+
+[node name="Node" type="Node" parent="." unique_id=827636782 node_paths=PackedStringArray("connector")]
+script = ExtResource("3_wicfy")
+connector = NodePath("../Menu/ConnectButton")

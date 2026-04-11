@@ -19,9 +19,13 @@ var running = false
 @onready var CAMERA_Y = 1 #$Capsule/Camera.position.y
 @onready var Body = $Capsule
 
+@export var menu:Control
+
+
 func _ready():
 	#hides the cursor
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	menu.visible = false
 	
 func _input(event):
 	#get mouse input for camera rotation
@@ -32,8 +36,10 @@ func _input(event):
 			Head.rotation.x = clamp(Head.rotation.x, deg_to_rad(-89), deg_to_rad(89))
 		if event is InputEventKey and Input.is_action_just_pressed("ui_cancel"):
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	elif event is InputEventMouseButton:
+			menu.visible = true
+	elif event is InputEventKey and Input.is_action_just_pressed("ui_cancel"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		menu.visible = false
 	
 	
 var tspeed = SPEED
@@ -71,7 +77,6 @@ func _physics_process(delta: float) -> void:
 			velocity.x = move_toward(velocity.x, 0, tspeed)
 			velocity.z = move_toward(velocity.z, 0, tspeed)
 
-	print(velocity,Head.position,CAMERA_Y)
 	if velocity.is_zero_approx() && Head.position.y<CAMERA_Y+0.001:
 		Head.position = Vector3(0,CAMERA_Y,0)
 		Head.rotation.z=0
